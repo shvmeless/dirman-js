@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"module": "CommonJS",
+		"target": "es2016",
+		"rootDir": ".",
+		"outDir": "./build",
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"noImplicitAny": true,
+		"skipLibCheck": true,
+		"declaration": true,
+		"sourceMap": true,
+		"strict": true,
+	},
+	"exclude": [
+		"node_modules"
+	]
+}

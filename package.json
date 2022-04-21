@@ -1,7 +1,7 @@
 {
 	"name": "@shvmeless/dirman",
 	"displayName": "Dirman",
-	"description": "A NodeJS CLI program to manage directories and files.",
+	"description": "Commands to list directories, search files or calculate the directory size.",
 	"version": "0.0.1",
 	"author": {
 		"name": "Luciano Aedo Puga",

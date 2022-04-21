@@ -1,3 +1,4 @@
+// IMPORTS
 import { Argument, Option, program } from 'commander'
 import DirManager from './classes/DirManager'
 import { resolve } from 'path'

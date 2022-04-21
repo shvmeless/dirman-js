@@ -3,6 +3,8 @@ import { readdirSync, statSync } from 'fs'
 import { Directory } from './Interfaces'
 import { join } from 'path'
 import Table from './Table'
+import { BOLD, RESET, WHITE } from '../utils/styles'
+import { byteFormatter } from '../helpers/formatting.helper'
 
 // CLASS
 class DirManager {
@@ -102,24 +104,24 @@ class DirManager {
 		if ( this.showCreation ) {
 			table.addColumn( { alignment: 'left' } )
 			table.addSpanning( { colSpan: 1, col: table.getSpanning().length, row: 0, alignment: 'center' } )
-			headers.push( `CREATION` )
+			headers.push( `${ WHITE }${ BOLD }CREATION${ RESET }` )
 		}
 
 		if ( this.showUpdate ) {
 			table.addColumn( { alignment: 'left' } )
 			table.addSpanning( { colSpan: 1, col: table.getSpanning().length, row: 0, alignment: 'center' } )
-			headers.push( `UPDATE` )
+			headers.push( `${ WHITE }${ BOLD }UPDATE${ RESET }` )
 		}
 
 		if ( this.showSize ) {
 			table.addColumn( { alignment: 'right' } )
 			table.addSpanning( { colSpan: 1, col: table.getSpanning().length, row: 0, alignment: 'center' } )
-			headers.push( `SIZE` )
+			headers.push( `${ WHITE }${ BOLD }SIZE${ RESET }` )
 		}
 
 		table.addColumn( { alignment: 'left' } )
 		table.addSpanning( { colSpan: 1, col: table.getSpanning().length, row: 0, alignment: 'center' } )
-		headers.push( `NAME` )
+		headers.push( `${ WHITE }${ BOLD }NAME${ RESET }` )
 
 		table.addRow( headers )
 
@@ -129,7 +131,7 @@ class DirManager {
 
 			if ( dir.creation ) row.push( dir.creation.toLocaleString() )
 			if ( dir.update ) row.push( dir.update.toLocaleString() )
-			if ( dir.size !== undefined ) row.push( dir.size === null ? '' : dir.size.toString() )
+			if ( dir.size !== undefined ) row.push( dir.size === null ? '' : byteFormatter( dir.size ) )
 			row.push( dir.name )
 
 			table.addRow( row )

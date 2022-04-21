@@ -1,10 +1,10 @@
 // IMPORTS
-import { Argument, program } from 'commander'
-import { existsSync } from 'fs'
-import { resolve } from 'path'
 import { calculateDirSize } from './helpers/directory.helper'
 import { byteFormatter } from './helpers/formatting.helper'
 import { BOLD, RESET, WHITE } from './utils/styles'
+import { Argument, program } from 'commander'
+import { existsSync } from 'fs'
+import { resolve } from 'path'
 
 // ARGUMENTS
 const args = { path: new Argument( '[path]', 'Set the directory to search.' ).default( '.', 'Current location.' ) }

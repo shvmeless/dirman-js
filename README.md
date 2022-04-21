@@ -1,3 +1,3 @@
 ## **@Shvmeless/Dirman**
 
-A NodeJS CLI program to manage directories and files.
+Commands to list directories, search files or calculate the directory size.

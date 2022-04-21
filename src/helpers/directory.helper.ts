@@ -1,6 +1,7 @@
 // IMPORTS
 import { readdirSync, statSync } from 'fs'
 import { join } from 'path'
+import { Directory } from '../classes/Interfaces'
 
 // FUNCTION
 export const calculateDirSize = ( path: string ): number => {
@@ -19,5 +20,39 @@ export const calculateDirSize = ( path: string ): number => {
 	} )
 
 	return size
+
+}
+
+// FUNCTION
+export const searchFile = ( path: string, name: string ): Directory[] => {
+
+	const found: Directory[] = []
+
+	name = name.toLowerCase()
+	name = name.replace( /[ ]/gm, '' )
+
+	const items = readdirSync( path, { withFileTypes: true } )
+
+	for ( const item of items ) {
+
+		const stats = statSync( join( path, item.name ) )
+
+		let itemName = item.name
+		itemName = itemName.toLowerCase()
+		itemName = itemName.replace( / /gm, '' )
+
+		if ( itemName.indexOf( name ) >= 0 ) found.push( {
+			name: join( path, item.name ),
+			isDir: stats.isDirectory(),
+			size: stats.isDirectory() ? null : stats.size,
+		} )
+
+		if ( !item.isDirectory() ) continue
+
+		found.push( ...searchFile( join( path, item.name ), name ) )
+
+	}
+
+	return found
 
 }

@@ -9,8 +9,8 @@ import { BOLD, RESET, WHITE } from './utils/styles'
 
 // ARGUMENTS
 const args = {
-	path: new Argument( '[path]', 'Set the directory to search.' ).default( '.', 'Current location.' ),
-	name: new Argument( '<name>', 'The name of the directory or file.' ),
+	path: new Argument( '[path]', 'Path of the directory where to search.' ).default( '.', 'Current location.' ),
+	name: new Argument( '<name>', 'The file name to search for.' ),
 }
 
 // PROGRAM

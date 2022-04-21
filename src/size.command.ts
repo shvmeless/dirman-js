@@ -7,21 +7,22 @@ import { existsSync } from 'fs'
 import { resolve } from 'path'
 
 // ARGUMENTS
-const args = { path: new Argument( '[path]', 'Set the directory to search.' ).default( '.', 'Current location.' ) }
+const args = { path: new Argument( '[path]', 'Path of the directory to calculate the size.' ).default( '.', 'Current location.' ) }
 
 // PROGRAM
 program
-	.description( 'Lists the directories and files found in the specified location.' )
+	.description( 'Displays the total size of the specified directory.' )
 	.addArgument( args.path )
 	.action( ( path ) => {
 
-		path = resolve( process.cwd(), path )
-		if ( !existsSync( path ) ) {
-			process.stdout.write( `No such file or directory!` )
-			process.exit( 1 )
-		}
-
 		try {
+
+			path = resolve( process.cwd(), path )
+
+			if ( !existsSync( path ) ) {
+				process.stdout.write( `No such file or directory!` )
+				process.exit( 1 )
+			}
 
 			const size = calculateDirSize( path )
 			process.stdout.write( `\n${ WHITE }${ BOLD }DIRECTORY: ${ RESET }${ path }` )

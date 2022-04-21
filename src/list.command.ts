@@ -1,4 +1,4 @@
-// IMPORTS
+#!/usr/bin/env node
 import { Argument, Option, program } from 'commander'
 import DirManager from './classes/DirManager'
 import { resolve } from 'path'
@@ -16,6 +16,7 @@ const options = {
 // PROGRAM
 program
 	.description( 'Generates a list of all items found within the specified directory.' )
+	.version( '0.1.0' )
 	.addArgument( args.path )
 	.addOption( options.creation )
 	.addOption( options.update )

@@ -2,7 +2,7 @@
 	"name": "@shvmeless/dirman",
 	"displayName": "Dirman",
 	"description": "Commands to list directories, search files or calculate the directory size.",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"author": {
 		"name": "Luciano Aedo Puga",
 		"email": "shvme.development@gmail.com"
@@ -12,8 +12,37 @@
 		"type": "git",
 		"url": "https://github.com/shvmeless/dirman-js.git"
 	},
-	"keywords": [],
-	"main": "index.js",
+	"keywords": [
+		"folder",
+		"file",
+		"directory",
+		"list",
+		"search",
+		"bytes",
+		"size",
+		"cli"
+	],
+	"main": "list.command.js",
+	"bin": {
+		"dirman-list": "./dist/list.command.js",
+		"dirman-search": "./dist/search.command.js",
+		"dirman-size": "./dist/size.command.js"
+	},
+	"files": [
+		"package.json",
+		"license",
+		"README.md",
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc -p ./tsconfig.dist.json",
+		"pack": "npm pack",
+		"publish": "npm publish --access public"
+	},
+	"dependencies": {
+		"commander": "9.2.0",
+		"table": "6.8.0"
+	},
 	"devDependencies": {
 		"@types/node": "17.0.25",
 		"@typescript-eslint/eslint-plugin": "^5.20.0",
@@ -22,9 +51,5 @@
 		"ts-node": "10.7.0",
 		"ts-node-dev": "1.1.8",
 		"typescript": "4.6.3"
-	},
-	"dependencies": {
-		"commander": "9.2.0",
-		"table": "6.8.0"
 	}
 }

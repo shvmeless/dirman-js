@@ -1,4 +1,4 @@
-// IMPORTS
+#!/usr/bin/env node
 import { calculateDirSize } from './helpers/directory.helper'
 import { byteFormatter } from './helpers/formatting.helper'
 import { BOLD, RESET, WHITE } from './utils/styles'
@@ -12,6 +12,7 @@ const args = { path: new Argument( '[path]', 'Path of the directory to calculate
 // PROGRAM
 program
 	.description( 'Displays the total size of the specified directory.' )
+	.version( '0.1.0' )
 	.addArgument( args.path )
 	.action( ( path ) => {
 

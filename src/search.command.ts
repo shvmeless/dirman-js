@@ -1,11 +1,11 @@
-// IMPORTS
+#!/usr/bin/env node
+import { byteFormatter } from './helpers/formatting.helper'
+import { searchFile } from './helpers/directory.helper'
+import { BOLD, RESET, WHITE } from './utils/styles'
 import { Argument, program } from 'commander'
+import Table from './classes/Table'
 import { existsSync } from 'fs'
 import { resolve } from 'path'
-import Table from './classes/Table'
-import { searchFile } from './helpers/directory.helper'
-import { byteFormatter } from './helpers/formatting.helper'
-import { BOLD, RESET, WHITE } from './utils/styles'
 
 // ARGUMENTS
 const args = {
@@ -16,6 +16,7 @@ const args = {
 // PROGRAM
 program
 	.description( 'Lists the directories and files found in the specified location.' )
+	.version( '0.1.0' )
 	.addArgument( args.path )
 	.addArgument( args.name )
 	.action( ( path, name ) => {

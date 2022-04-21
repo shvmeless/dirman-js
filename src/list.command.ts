@@ -8,7 +8,7 @@ const args = { path: new Argument( '[path]', 'Set the directory to search.' ).de
 // OPTIONS
 const options = {
 	creation: new Option( '-c, --creation', 'Show the creation date.' ),
-	update: new Option( '-m, --update', 'Show the modification date.' ),
+	update: new Option( '-u, --update', 'Show the modification date.' ),
 	size: new Option( '-s, --size', 'Show the directory size.' ),
 }
 
@@ -32,9 +32,7 @@ program
 			process.exit( 1 )
 		}
 
-		dirManager.getDirectories().forEach( ( dir ) => {
-			process.stdout.write( `${ dir.name }\n` )
-		} )
+		process.stdout.write( dirManager.toTable() )
 
 		process.exit( 0 )
 

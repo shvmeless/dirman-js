@@ -1,7 +1,8 @@
 // IMPORTS
 import { readdirSync, statSync } from 'fs'
-import { join } from 'path'
 import { Directory } from './Interfaces'
+import { join } from 'path'
+import Table from './Table'
 
 // CLASS
 class DirManager {
@@ -88,6 +89,59 @@ class DirManager {
 		} )
 
 		this.directories = [...directories, ...files]
+
+	}
+
+	// METHOD
+	public toTable (): string {
+
+		const table = new Table()
+
+		const headers: string[] = []
+
+		if ( this.showCreation ) {
+			table.addColumn( { alignment: 'left' } )
+			table.addSpanning( { colSpan: 1, col: table.getSpanning().length, row: 0, alignment: 'center' } )
+			headers.push( `CREATION` )
+		}
+
+		if ( this.showUpdate ) {
+			table.addColumn( { alignment: 'left' } )
+			table.addSpanning( { colSpan: 1, col: table.getSpanning().length, row: 0, alignment: 'center' } )
+			headers.push( `UPDATE` )
+		}
+
+		if ( this.showSize ) {
+			table.addColumn( { alignment: 'right' } )
+			table.addSpanning( { colSpan: 1, col: table.getSpanning().length, row: 0, alignment: 'center' } )
+			headers.push( `SIZE` )
+		}
+
+		table.addColumn( { alignment: 'left' } )
+		table.addSpanning( { colSpan: 1, col: table.getSpanning().length, row: 0, alignment: 'center' } )
+		headers.push( `NAME` )
+
+		table.addRow( headers )
+
+		this.directories.forEach( ( dir ) => {
+
+			const row = []
+
+			if ( dir.creation ) row.push( dir.creation.toLocaleString() )
+			if ( dir.update ) row.push( dir.update.toLocaleString() )
+			if ( dir.size !== undefined ) row.push( dir.size === null ? '' : dir.size.toString() )
+			row.push( dir.name )
+
+			table.addRow( row )
+
+		} )
+
+		table.setBorder( 'norc' )
+		table.setHorizontalLine( ( index, rows ) => {
+			return index === 0 || index === 1 || index === rows
+		} )
+		const output = table.output()
+		return output
 
 	}
 
